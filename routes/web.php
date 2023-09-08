@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,28 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "Bienvenido a la página principal";
-});
+Route::get('/', HomeController::class);
 
-Route::get('/cursos', function(){
-    return "Bienvenido a la página de cursos";
-});
+Route::get('/cursos', [CursoController::class, 'index']);
 
-Route::get('/cursos/create', function(){
-    return "En esta página podrás crear un curso";
-});
+Route::get('/cursos/create', [CursoController::class, 'create']);
 
-/* Route::get('/cursos/{curso}', function($curso){
-    return "Bienvenido al curso de $curso";
-}); */
+Route::get('/cursos/{curso}', [CursoController::class, 'show']);
 
-Route::get('/cursos/{curso}/{categoria?}', function($curso, $categoria = null){
+/* Route::get('/cursos/{curso}/{categoria?}', function($curso, $categoria = null){
 
     if($categoria){
         return "Bienvenido al curso de $curso, de la categoría $categoria";
     }else{
         return "Bienvenido al curso de $curso";
     }
-});
+}); */
 
